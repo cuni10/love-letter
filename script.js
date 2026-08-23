@@ -19,11 +19,10 @@
     seal.classList.add('breaking');
     spawnSealPieces(seal);
 
-    // Step 2: Open the flap + move title (400ms)
+    // Step 2: Open the flap + hide title and instruction (400ms)
     setTimeout(() => {
       envelope.classList.add('open');
-      title.style.transform = 'translateY(-120px)';
-      title.style.transition = 'transform 0.65s ease-in-out';
+      title.classList.add('hidden');
       instruction.classList.add('hidden');
     }, 400);
 

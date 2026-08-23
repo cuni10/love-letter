@@ -99,12 +99,13 @@ body::after {
   border-right: var(--half) solid transparent;
   border-top: calc(var(--eh) * 0.5) solid var(--env-color-dark);
   filter: brightness(0.96);
+  z-index: -5;
   opacity: 0;
   transition: opacity 0.5s ease;
 }
 
 .envelope.open .envelope-pocket {
-  opacity: 1;
+  opacity: 0;
 }
 
 .envelope-cover {
@@ -112,12 +113,12 @@ body::after {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: var(--env-color-dark);
   z-index: 2;
   opacity: 0;
   transition: opacity 0.5s ease;
-  clip-path: polygon(50% 25%, 100% 0, 100% 100%, 0 98%, 0 0);
+  clip-path: polygon(50% 50%, 100% 0, 100% 100%, 0 100%, 0 0);
 }
 
 .envelope.open .envelope-cover {
@@ -128,7 +129,7 @@ body::after {
 .envelope-flap {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 5px;
   width: 0;
   height: 0;
   border-left: var(--half) solid transparent;
@@ -367,17 +368,18 @@ body::after {
   transform: translateY(-10px);
   animation: title-in 1s ease 0.3s forwards;
   white-space: nowrap;
+  transition: opacity 0.5s ease;
+}
+
+.envelope-title.hidden {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .title-heart {
   color: #e84040;
   display: inline-block;
   animation: heartbeat 1.5s ease-in-out infinite;
-}
-
-.envelope-wrapper.hiding .envelope-title {
-  opacity: 0;
-  transition: opacity 0.5s ease;
 }
 
 @keyframes title-in {
