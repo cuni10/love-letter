@@ -1,43 +1,116 @@
 (() => {
   const seal = document.getElementById('seal');
   const envelope = document.getElementById('envelope');
+  const envelopeWrapper = document.getElementById('envelopeWrapper');
   const instruction = document.getElementById('instruction');
+  const parchmentWrapper = document.getElementById('parchmentWrapper');
   const petalsContainer = document.getElementById('petalsContainer');
+  const lines = document.querySelectorAll('.p-line');
 
   let isOpened = false;
 
-  // ── Seal click ──
+  // Seal click handler
   seal.addEventListener('click', () => {
     if (isOpened) return;
     isOpened = true;
 
-    envelope.classList.add('opened');
+    // Step 1: Break the seal
+    seal.classList.add('breaking');
+    spawnSealPieces(seal);
+
+    // Step 2: Open the flap
+    setTimeout(() => {
+      envelope.classList.add('flap-open');
+    }, 400);
+
+    // Step 3: Hide instruction
     instruction.classList.add('hidden');
 
-    setTimeout(() => createPetals(), 800);
+    // Step 4: Hide envelope, show parchment
+    setTimeout(() => {
+      envelopeWrapper.classList.add('hiding');
+      parchmentWrapper.classList.add('visible');
+    }, 1200);
+
+    // Step 5: Reveal text lines one by one
+    setTimeout(() => {
+      revealLines();
+    }, 1800);
+
+    // Step 6: Start petals
+    setTimeout(() => {
+      startPetals();
+    }, 1400);
   });
 
-  // Also handle touch for better mobile response
+  // Touch support
   seal.addEventListener('touchend', (e) => {
     e.preventDefault();
     seal.click();
   });
 
-  // ── Rose Petals ──
-  function createPetals() {
-    const petalCount = window.innerWidth < 500 ? 18 : 28;
+  // Seal pieces explosion
+  function spawnSealPieces(parent) {
+    const rect = parent.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const pieceCount = 8;
 
-    for (let i = 0; i < petalCount; i++) {
-      setTimeout(() => spawnPetal(), i * 350);
+    for (let i = 0; i < pieceCount; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'seal-piece';
+
+      const size = rand(6, 14);
+      const angle = (Math.PI * 2 * i) / pieceCount + rand(-0.3, 0.3);
+      const distance = rand(40, 100);
+      const dx = Math.cos(angle) * distance;
+      const dy = Math.sin(angle) * distance;
+
+      piece.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        left: ${cx}px;
+        top: ${cy}px;
+        transform: translate(-50%, -50%);
+      `;
+
+      document.body.appendChild(piece);
+
+      piece.animate([
+        { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+        { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(0.3) rotate(${rand(90, 360)}deg)`, opacity: 0 }
+      ], {
+        duration: rand(400, 700),
+        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        fill: 'forwards'
+      }).onfinish = () => piece.remove();
+    }
+  }
+
+  // Reveal text lines
+  function revealLines() {
+    lines.forEach((line, i) => {
+      const delay = parseFloat(line.dataset.delay) || i * 0.5;
+      setTimeout(() => {
+        line.classList.add('revealed');
+      }, delay * 1000);
+    });
+  }
+
+  // Rose petals
+  function startPetals() {
+    const total = window.innerWidth < 500 ? 20 : 30;
+
+    for (let i = 0; i < total; i++) {
+      setTimeout(() => spawnPetal(), i * 300);
     }
 
-    // Keep spawning petals
-    let continuous = setInterval(() => {
-      if (petalsContainer.children.length > 40) return;
+    let interval = setInterval(() => {
+      if (petalsContainer.children.length > 45) return;
       spawnPetal();
-    }, 600);
+    }, 500);
 
-    setTimeout(() => clearInterval(continuous), 20000);
+    setTimeout(() => clearInterval(interval), 25000);
   }
 
   function spawnPetal() {
@@ -79,26 +152,20 @@
 
     petalsContainer.appendChild(petal);
 
-    // Trigger animation
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         petal.classList.add('falling');
       });
     });
 
-    // Remove after animation
     setTimeout(() => {
       if (petal.parentNode) petal.remove();
     }, (duration + delay) * 1000 + 500);
   }
 
-  function rand(min, max) {
-    return Math.random() * (max - min) + min;
-  }
-
-  // ── Ambient particles before opening ──
+  // Ambient particles
   function createAmbientParticles() {
-    const scene = document.querySelector('.scene');
+    const scene = document.querySelector('.envelope-wrapper');
     for (let i = 0; i < 8; i++) {
       const p = document.createElement('div');
       p.className = 'ambient-particle';
@@ -111,4 +178,8 @@
   }
 
   createAmbientParticles();
+
+  function rand(min, max) {
+    return Math.random() * (max - min) + min;
+  }
 })();

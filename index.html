@@ -13,44 +13,50 @@
 
   <div class="petals-container" id="petalsContainer"></div>
 
-  <div class="scene">
+  <!-- Phase 1: The sealed envelope -->
+  <div class="envelope-wrapper" id="envelopeWrapper">
     <div class="envelope" id="envelope">
-
-      <div class="envelope-back"></div>
-
-      <div class="letter" id="letter">
-        <div class="letter-content">
-          <p class="letter-greeting">Mi Amor,</p>
-          <p class="letter-text">
-            Cada dia a tu lado es un regalo que la vida me da. Tus ojos iluminan mis momentos mas oscuros y tu sonrisa es mi lugar favorito en el mundo.
-          </p>
-          <p class="letter-text">
-            No necesito grandes palabras para decirte lo que siento. Solo necesito que sepas que eres lo mas bonito que me ha pasado, y que cada segundo a tu lado es un tesoro que guardo en el corazon.
-          </p>
-          <p class="letter-text">
-            Gracias por existir, por ser tu, por hacer de mi vida algo tan hermoso. Te amo mas de lo que las palabras pueden expresar.
-          </p>
-          <p class="letter-signature">Con todo mi amor,</p>
-          <p class="letter-name">Siempre tuyo</p>
+      <div class="envelope-body">
+        <div class="envelope-flap">
+          <div class="envelope-flap-front"></div>
+          <div class="envelope-flap-back"></div>
+        </div>
+        <div class="envelope-front"></div>
+        <div class="seal" id="seal">
+          <div class="seal-body">
+            <div class="seal-inner">
+              <div class="seal-heart">&#10084;</div>
+              <div class="seal-text">AMOR</div>
+            </div>
+            <div class="seal-glow"></div>
+            <div class="seal-crack" id="sealCrack"></div>
+          </div>
         </div>
       </div>
-
-      <div class="flap" id="flap">
-        <div class="flap-front"></div>
-        <div class="flap-back"></div>
-      </div>
-
-      <div class="seal" id="seal">
-        <div class="seal-inner">
-          <div class="seal-heart">&#10084;</div>
-          <div class="seal-text">AMOR</div>
-        </div>
-        <div class="seal-glow"></div>
-      </div>
-
     </div>
-
     <p class="instruction" id="instruction">Toca el sello para abrir</p>
+  </div>
+
+  <!-- Phase 2: The parchment -->
+  <div class="parchment-wrapper" id="parchmentWrapper">
+    <div class="parchment" id="parchment">
+      <div class="parchment-edge parchment-edge-top"></div>
+      <div class="parchment-edge parchment-edge-bottom"></div>
+      <div class="parchment-scroll parchment-scroll-top"></div>
+      <div class="parchment-scroll parchment-scroll-bottom"></div>
+      <div class="parchment-content" id="parchmentContent">
+        <p class="p-line p-greeting" data-delay="0.3">Hola amor,</p>
+        <p class="p-line p-greeting-sub" data-delay="0.6">mi amorchita preciosa,</p>
+        <p class="p-line" data-delay="1.0">te quiero escribir esto para que sepas que siempre voy a estar para vos y con vos y lo mucho que te amo.</p>
+        <p class="p-line" data-delay="1.8">Primero te quiero agradecer por todo lo que hiciste por mi, todavía no me puedo olvidar lo mal que estaba hace unos meses y vos me sacaste de ahi y me ayudaste me diste fuerzas, nunca voy a olvidar eso, cuando ya había intentado de todo y no podia, y gracias a vos pude,</p>
+        <p class="p-line" data-delay="2.8">y acá voy a estar yo junto a vos esperándote que vos puedas hacer lo que tengas que hacer y salir, salir me refiero que te sientas bien con vos misma, siempre voy a estar, aunque me enoje vos sabes que nunca te voy a dejar, si me enojo como todo el mundo y me dan ganas de mandarte a la mierda pero vos no tenes que pensar que se va acabar todo,</p>
+        <p class="p-line" data-delay="3.8">sabes que voy a estar enojado 1 o 2 dias y se me va a pasar, porque se lo que te amo y nunca me voy a ir, yo me conozco por eso se lo que te digo,</p>
+        <p class="p-line" data-delay="4.6">y una ultima cosa, siempre pero siempre que me necesites voy a estar para vos, tenes que estar tranquila con eso, aunque nos separemos nos peleemos siempre voy a estar, porque lo que mas quiero en el mundo es que vos estes bien, y aunque pasen cosas, pase tiempo va a seguir quedando eso en mi, verte feliz contenta, aunque sea de lejos,</p>
+        <p class="p-line" data-delay="5.6">no te quiero decir mas nada, ni hacerte ver nada, ni darte consejos, solo te quiero decir que acá estoy con vos apoyándote.</p>
+        <p class="p-line p-closing" data-delay="6.4">y gracias por estar conmigo.</p>
+        <p class="p-line p-love" data-delay="7.0">Te amo &#10084;</p>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
