@@ -116,7 +116,7 @@
       spawnPetal();
     }, 350);
 
-    setTimeout(() => clearInterval(interval), 30000);
+    setTimeout(() => clearInterval(interval), 45000);
   }
 
   function spawnPetal() {
