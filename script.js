@@ -188,4 +188,18 @@
   function rand(min, max) {
     return Math.random() * (max - min) + min;
   }
+
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+
+  document.querySelectorAll('.photo').forEach(function(photo) {
+    photo.addEventListener('click', function() {
+      lightboxImg.src = photo.src;
+      lightbox.classList.add('active');
+    });
+  });
+
+  lightbox.addEventListener('click', function() {
+    lightbox.classList.remove('active');
+  });
 })();
