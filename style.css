@@ -86,11 +86,6 @@ body::after {
   background: linear-gradient(170deg, var(--env-color) 0%, var(--env-color-dark) 100%);
   border-radius: 6px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
-  transition: opacity 0.75s ease;
-}
-
-.envelope.letter-up .envelope-back {
-  opacity: 0;
 }
 
 /* Front pocket (inverted triangle) */
@@ -110,7 +105,7 @@ body::after {
   height: 0;
   border-left: var(--half) solid transparent;
   border-right: var(--half) solid transparent;
-  border-top: calc(var(--eh) * 0.55) solid var(--env-color-dark);
+  border-top: calc(var(--eh) * 0.6) solid var(--env-color-dark);
   filter: brightness(0.96);
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -160,11 +155,12 @@ body::after {
   align-items: center;
   justify-content: center;
   transform: translateY(0);
-  transition: transform 0.75s ease-in-out;
+  transition: transform 0.75s ease-in-out, z-index 0s;
 }
 
 .envelope.letter-up .envelope-letter {
   transform: translateY(-100px);
+  z-index: 1;
 }
 
 .envelope-letter-lines {
