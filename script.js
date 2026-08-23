@@ -27,21 +27,27 @@
       instruction.classList.add('hidden');
     }, 400);
 
-    // Step 3: Envelope fades, parchment appears (1600ms)
+    // Step 3: Flap goes back + letter slides up (1100ms = 400 + 700)
+    setTimeout(() => {
+      envelope.classList.add('flap-back');
+      envelope.classList.add('letter-up');
+    }, 1100);
+
+    // Step 4: Envelope fades, parchment appears (2000ms)
     setTimeout(() => {
       envelopeWrapper.classList.add('hiding');
       parchmentWrapper.classList.add('visible');
-    }, 1600);
+    }, 2000);
 
-    // Step 4: Start petals (1800ms)
+    // Step 5: Start petals (2200ms)
     setTimeout(() => {
       startPetals();
-    }, 1800);
+    }, 2200);
 
-    // Step 5: Reveal text lines (2400ms)
+    // Step 6: Reveal text lines (2800ms)
     setTimeout(() => {
       revealLines();
-    }, 2400);
+    }, 2800);
   });
 
   // Touch support

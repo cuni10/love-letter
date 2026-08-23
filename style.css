@@ -72,7 +72,6 @@ body::after {
   width: var(--ew);
   height: var(--eh);
   perspective: 1000px;
-  overflow: hidden;
   cursor: pointer;
   z-index: 2;
   transition: transform 0.3s ease;
@@ -132,20 +131,30 @@ body::after {
   border-top-color: var(--env-color-dark);
 }
 
-/* Letter inside envelope - revealed by flap opening */
+.envelope.flap-back .envelope-flap {
+  z-index: -1;
+}
+
+/* Letter behind envelope - slides up when opened */
 .envelope-letter {
   position: absolute;
   left: 8%;
   right: 8%;
-  top: 5%;
-  height: 60%;
+  top: 0;
+  height: 78%;
   background: linear-gradient(180deg, #fffef8 0%, #faf5eb 100%);
   border-radius: 3px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  z-index: 3;
+  z-index: -1;
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: translateY(0);
+  transition: transform 0.75s ease-in-out;
+}
+
+.envelope.letter-up .envelope-letter {
+  transform: translateY(-100px);
 }
 
 .envelope-letter-lines {
