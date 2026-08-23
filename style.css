@@ -65,7 +65,7 @@ body::after {
   --ew: min(80vw, 300px);
   --eh: min(56vw, 210px);
   --half: calc(var(--ew) / 2);
-  --flap-h: calc(var(--eh) * 0.48);
+  --flap-h: calc(var(--eh) * 0.5);
   --env-color: #e8d5b7;
   --env-color-dark: #dcc9a3;
   position: relative;
@@ -73,7 +73,6 @@ body::after {
   height: var(--eh);
   perspective: 1000px;
   cursor: pointer;
-  z-index: 2;
   transition: transform 0.3s ease;
 }
 
@@ -106,8 +105,14 @@ body::after {
   height: 0;
   border-left: var(--half) solid transparent;
   border-right: var(--half) solid transparent;
-  border-top: calc(var(--eh) * 0.65) solid var(--env-color-dark);
+  border-top: calc(var(--eh) * 0.5) solid var(--env-color-dark);
   filter: brightness(0.96);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.envelope.open .envelope-pocket {
+  opacity: 1;
 }
 
 /* Flap - CSS border triangle */
