@@ -14,11 +14,11 @@
     if (isOpened) return;
     isOpened = true;
 
-    // Step 1: Break the seal
+    // Step 1: Break the seal (0ms)
     seal.classList.add('breaking');
     spawnSealPieces(seal);
 
-    // Step 2: Open the flap
+    // Step 2: Open the flap (400ms)
     setTimeout(() => {
       envelope.classList.add('flap-open');
     }, 400);
@@ -26,21 +26,26 @@
     // Step 3: Hide instruction
     instruction.classList.add('hidden');
 
-    // Step 4: Hide envelope, show parchment
+    // Step 4: Letter slides up from envelope (1000ms)
+    setTimeout(() => {
+      envelope.classList.add('letter-up');
+    }, 1000);
+
+    // Step 5: Envelope fades out, parchment fades in (1600ms)
     setTimeout(() => {
       envelopeWrapper.classList.add('hiding');
       parchmentWrapper.classList.add('visible');
-    }, 1200);
+    }, 1600);
 
-    // Step 5: Reveal text lines one by one
+    // Step 6: Reveal text lines (2400ms)
     setTimeout(() => {
       revealLines();
-    }, 1800);
+    }, 2400);
 
-    // Step 6: Start petals
+    // Step 7: Start petals (1800ms)
     setTimeout(() => {
       startPetals();
-    }, 1400);
+    }, 1800);
   });
 
   // Touch support
@@ -89,8 +94,8 @@
 
   // Reveal text lines
   function revealLines() {
-    lines.forEach((line, i) => {
-      const delay = parseFloat(line.dataset.delay) || i * 0.5;
+    lines.forEach((line) => {
+      const delay = parseFloat(line.dataset.delay) || 0;
       setTimeout(() => {
         line.classList.add('revealed');
       }, delay * 1000);
