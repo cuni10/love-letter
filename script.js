@@ -20,10 +20,7 @@
     title.style.transition = 'transform 0.65s ease-in-out';
     instruction.classList.add('hidden');
 
-    // Step 2: Letter appears behind envelope (700ms)
-    // CSS handles this via .envelope.open .envelope-letter opacity
-
-    // Step 3: Envelope fades, parchment appears (1600ms)
+    // Step 2: Envelope fades, parchment appears (1600ms)
     setTimeout(() => {
       envelopeWrapper.classList.add('hiding');
       parchmentWrapper.classList.add('visible');
