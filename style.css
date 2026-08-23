@@ -551,6 +551,15 @@ body::after {
   font-size: clamp(1.2rem, 4.8vw, 1.65rem);
   color: #8b3030;
   text-align: left;
+  margin-bottom: 4px;
+}
+
+.p-name {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.4rem, 5.5vw, 1.9rem);
+  color: #c62828;
+  text-align: left;
+  font-weight: 700;
   margin-bottom: 18px;
 }
 
