@@ -112,20 +112,12 @@ body::after {
   top: 0;
   left: 0;
   width: 100%;
-  height: calc(var(--eh) * 0.5);
+  height: 100vh;
   background: var(--env-color-dark);
   z-index: 2;
   opacity: 0;
   transition: opacity 0.5s ease;
-  clip-path: polygon(
-    0% 0%,
-    40% 0%,
-    50% 100%,
-    60% 0%,
-    100% 0%,
-    100% 100%,
-    0% 100%
-  );
+  clip-path: polygon(50% 25%, 100% 0, 100% 100%, 0 98%, 0 0);
 }
 
 .envelope.open .envelope-cover {
