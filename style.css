@@ -107,6 +107,22 @@ body::after {
   opacity: 1;
 }
 
+.envelope-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(var(--eh) * 0.5);
+  background: var(--env-color-dark);
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.envelope.open .envelope-cover {
+  opacity: 1;
+}
+
 /* Flap - CSS border triangle */
 .envelope-flap {
   position: absolute;
