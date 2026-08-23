@@ -53,14 +53,6 @@ body::after {
   pointer-events: none;
 }
 
-.envelope-container {
-  --ew: min(80vw, 300px);
-  --eh: min(56vw, 210px);
-  position: relative;
-  width: var(--ew);
-  height: var(--eh);
-}
-
 .envelope {
   --ew: min(80vw, 300px);
   --eh: min(56vw, 210px);
@@ -99,13 +91,13 @@ body::after {
 
 .envelope-pocket {
   position: absolute;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 0;
   height: 0;
   border-left: var(--half) solid transparent;
   border-right: var(--half) solid transparent;
-  border-top: calc(var(--eh) * 0.6) solid var(--env-color-dark);
+  border-bottom: calc(var(--eh) * 0.5) solid var(--env-color-dark);
   filter: brightness(0.96);
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -624,12 +616,12 @@ body::after {
 /* ========== RESPONSIVE ========== */
 
 @media (max-width: 380px) {
-  .envelope-container, .envelope { --ew: 86vw; --eh: 60vw; }
+  .envelope { --ew: 86vw; --eh: 60vw; }
   .parchment { padding: 22px 14px; }
   .p-line { font-size: 0.72rem; line-height: 1.5; }
 }
 
 @media (min-width: 768px) {
-  .envelope-container, .envelope { --ew: 340px; --eh: 240px; }
+  .envelope { --ew: 340px; --eh: 240px; }
   .p-line { font-size: 1.05rem; }
 }
