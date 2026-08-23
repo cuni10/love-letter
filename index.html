@@ -16,19 +16,7 @@
   <!-- Phase 1: The sealed envelope -->
   <div class="envelope-wrapper" id="envelopeWrapper">
     <h1 class="envelope-title">Carta para Lourdes <span class="title-heart">&#10084;</span></h1>
-    <div class="envelope" id="envelope">
-      <!-- Back of envelope -->
-      <div class="envelope-back"></div>
-      <!-- Front face (triangle pocket) -->
-      <div class="envelope-front">
-        <div class="envelope-pocket"></div>
-      </div>
-      <!-- Flap (folds open) -->
-      <div class="envelope-flap" id="flap">
-        <div class="flap-front"></div>
-        <div class="flap-back"></div>
-      </div>
-      <!-- Letter inside -->
+    <div class="envelope-container">
       <div class="envelope-letter" id="envelopeLetter">
         <div class="envelope-letter-lines">
           <div class="el-line el-short"></div>
@@ -37,19 +25,15 @@
           <div class="el-line el-short"></div>
         </div>
       </div>
-      <!-- Wax seal -->
-      <div class="seal" id="seal">
-        <div class="seal-body">
-          <div class="seal-inner">
-            <div class="seal-heart">&#10084;</div>
-            <div class="seal-text">AMOR</div>
-          </div>
-          <div class="seal-glow"></div>
-          <div class="seal-crack"></div>
+      <div class="envelope" id="envelope">
+        <div class="envelope-back"></div>
+        <div class="envelope-front">
+          <div class="envelope-pocket"></div>
         </div>
+        <div class="envelope-flap" id="flap"></div>
       </div>
     </div>
-    <p class="instruction" id="instruction">Toca el sello para abrir</p>
+    <p class="instruction" id="instruction">Toca el sobre para abrir</p>
   </div>
 
   <!-- Phase 2: The parchment -->
