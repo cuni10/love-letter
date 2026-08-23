@@ -1,4 +1,5 @@
 (() => {
+  const seal = document.getElementById('seal');
   const envelope = document.getElementById('envelope');
   const envelopeWrapper = document.getElementById('envelopeWrapper');
   const instruction = document.getElementById('instruction');
@@ -9,18 +10,24 @@
 
   let isOpened = false;
 
-  // Click envelope to open (reference style)
-  envelope.addEventListener('click', () => {
+  // Seal click handler
+  seal.addEventListener('click', () => {
     if (isOpened) return;
     isOpened = true;
 
-    // Step 1: Open flap + move title up (0ms)
-    envelope.classList.add('open');
-    title.style.transform = 'translateY(-120px)';
-    title.style.transition = 'transform 0.65s ease-in-out';
-    instruction.classList.add('hidden');
+    // Step 1: Break the seal (0ms)
+    seal.classList.add('breaking');
+    spawnSealPieces(seal);
 
-    // Step 2: Envelope fades, parchment appears (1600ms)
+    // Step 2: Open the flap + move title (400ms)
+    setTimeout(() => {
+      envelope.classList.add('open');
+      title.style.transform = 'translateY(-120px)';
+      title.style.transition = 'transform 0.65s ease-in-out';
+      instruction.classList.add('hidden');
+    }, 400);
+
+    // Step 3: Envelope fades, parchment appears (1600ms)
     setTimeout(() => {
       envelopeWrapper.classList.add('hiding');
       parchmentWrapper.classList.add('visible');
@@ -36,6 +43,50 @@
       revealLines();
     }, 2400);
   });
+
+  // Touch support
+  seal.addEventListener('touchend', (e) => {
+    e.preventDefault();
+    seal.click();
+  });
+
+  // Seal pieces explosion
+  function spawnSealPieces(parent) {
+    const rect = parent.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const pieceCount = 8;
+
+    for (let i = 0; i < pieceCount; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'seal-piece';
+
+      const size = rand(6, 14);
+      const angle = (Math.PI * 2 * i) / pieceCount + rand(-0.3, 0.3);
+      const distance = rand(40, 100);
+      const dx = Math.cos(angle) * distance;
+      const dy = Math.sin(angle) * distance;
+
+      piece.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        left: ${cx}px;
+        top: ${cy}px;
+        transform: translate(-50%, -50%);
+      `;
+
+      document.body.appendChild(piece);
+
+      piece.animate([
+        { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+        { transform: `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px)) scale(0.3) rotate(${rand(90, 360)}deg)`, opacity: 0 }
+      ], {
+        duration: rand(400, 700),
+        easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+        fill: 'forwards'
+      }).onfinish = () => piece.remove();
+    }
+  }
 
   // Reveal text lines
   function revealLines() {
