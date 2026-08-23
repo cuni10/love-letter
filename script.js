@@ -111,12 +111,25 @@
       setTimeout(() => spawnPetal(), i * 200);
     }
 
-    let interval = setInterval(() => {
-      if (petalsContainer.children.length > 60) return;
-      spawnPetal();
-    }, 350);
+    const startTime = Date.now();
+    const duration = 300000;
 
-    setTimeout(() => clearInterval(interval), 300000);
+    function scheduleNext() {
+      const elapsed = Date.now() - startTime;
+      if (elapsed >= duration) return;
+
+      const progress = elapsed / duration;
+      const interval = 200 + progress * 4800;
+
+      setTimeout(() => {
+        if (petalsContainer.children.length < 60) {
+          spawnPetal();
+        }
+        scheduleNext();
+      }, interval);
+    }
+
+    scheduleNext();
   }
 
   function spawnPetal() {
