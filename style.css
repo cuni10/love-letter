@@ -630,6 +630,34 @@ body::after {
   transform: scale(1);
 }
 
+.p-footer {
+  text-align: center;
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(139,90,43,0.15);
+}
+
+.footer-text {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(1.4rem, 5.5vw, 2rem);
+  color: #8b0000;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin: 0 0 6px;
+}
+
+.footer-heart {
+  font-size: clamp(1.8rem, 7vw, 2.8rem);
+  color: #8b0000;
+  display: inline-block;
+  animation: heartPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+}
+
 .parchment::-webkit-scrollbar { width: 4px; }
 .parchment::-webkit-scrollbar-track { background: transparent; }
 .parchment::-webkit-scrollbar-thumb { background: rgba(139,90,43,0.3); border-radius: 2px; }
