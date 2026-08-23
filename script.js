@@ -105,18 +105,18 @@
 
   // Rose petals
   function startPetals() {
-    const total = window.innerWidth < 500 ? 20 : 30;
+    const total = window.innerWidth < 500 ? 35 : 50;
 
     for (let i = 0; i < total; i++) {
-      setTimeout(() => spawnPetal(), i * 300);
+      setTimeout(() => spawnPetal(), i * 200);
     }
 
     let interval = setInterval(() => {
-      if (petalsContainer.children.length > 45) return;
+      if (petalsContainer.children.length > 60) return;
       spawnPetal();
-    }, 500);
+    }, 350);
 
-    setTimeout(() => clearInterval(interval), 25000);
+    setTimeout(() => clearInterval(interval), 30000);
   }
 
   function spawnPetal() {
